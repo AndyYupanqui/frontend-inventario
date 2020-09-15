@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand-lg navbar-light mat-elevation-z2 example-header" style=" text-align: center; background: #003c8f; color: white">
+    <a mat-button (click)="sidenav.toggle()">
+        <i style="color:white" class="material-icons"> menu </i>
+    </a>
+    <a mat-button class="navbar-brand mat-button">
+        <span style="color: white; font-size: 1.3em"><i class="material-icons docs-angular-logo">important_devices</i>
+            Sistema de Ventas Aceros Lino </span></a>
+</nav>
+
+<mat-sidenav-container class="sidenav-container">
+<!-- <mat-sidenav #sidenav mode="side" opened class="example-sidenav" style="background: rgb(34,69,98,90%)"> -->
+    <mat-sidenav #sidenav mode="side" opened class="example-sidenav" style="background:rgb(44, 62, 80)">
+        <hr>
+        <div style="height: 230px;" class="text-center">
+            <p class="mt-1" style="color: white; font-size: 16px; font-family: sans-serif; font-weight: bold">Bienvenido</p>
+            <label for="file-input">
+                <img src="../../../assets/user.png" alt="" width="64px" title="Cambiar imagen"
+                    style="cursor: pointer; border-radius: 72px; width:72px; height:72px" *ngIf="!empleado.img">
+                <img src="{{url+'/get-image/'+empleado.img}}" alt="" width="64px"
+                    style="cursor: pointer; border-radius: 72px; width:72px; height:72px" title="Cambiar imagen"
+                    *ngIf="empleado.img" /></label>
+            <input id="file-input" name="foto" type="file" style="display: none" (change)="fileChangeEvent($event)" />
+            <p style="color: white; font-size: 16px; font-family: sans-serif; font-weight: bold">{{empleado.nombres.split(" ")[0]}} {{empleado.apellidos.split(" ")[0]}}</p>
+            <button mat-raised-button color="warn" (click)="logout()">Cerrar Sesión</button>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-toolbar style="background: transparent">
+            <mat-toolbar-row *ngIf="admin || compras" [routerLink]="[ '/home/productos']" routerLinkActive="active-link">
+                <span *ngIf="isExpanded || isShowing" style="color: white">Productos </span>
+                <span class="example-spacer"></span>
+                <i class="material-icons" style="color: white">local_offer</i>
+            </mat-toolbar-row>
+            <!-- <mat-toolbar-row *ngIf="admin || compras" [routerLink]="[ '/home/proveedores']" routerLinkActive="active-link">
+                <span *ngIf="isExpanded || isShowing">Proveedores</span>
+                <span class="example-spacer"></span>
+                <i class="material-icons">
+                    accessibility
+                </i>
+            </mat-toolbar-row> -->
+            <!-- <mat-toolbar-row *ngIf="admin || compras" [routerLink]="[ '/home/compra']" routerLinkActive="active-link">
+                <span *ngIf="isExpanded || isShowing">Compras</span>
+                <span class="example-spacer"></span>
+                <i class="material-icons">add_shopping_cart</i>
+            </mat-toolbar-row> -->
+            
+
+            
+
+            <mat-toolbar-row *ngIf="admin || ventas" [routerLink]="[ '/home/venta']" routerLinkActive="active-link">
+                <span *ngIf="isExpanded || isShowing" style="color: white">Ventas</span>
+                <span class="example-spacer"></span>
+                <i class="material-icons" style="color: white">local_offer</i>
+            </mat-toolbar-row>
+
+           
+            <!-- <mat-toolbar-row *ngIf="admin" id="btn-empleados" [routerLink]="[ '/home/empleados']" routerLinkActive="active-link">
+                <span *ngIf="isExpanded || isShowing" style="color: white">Empleados</span>
+                <span class="example-spacer"></span>
+                <i class="material-icons" style="color: white">how_to_reg</i>
+            </mat-toolbar-row> -->
+            <mat-toolbar-row *ngIf="admin || ventas" [routerLink]="[ '/home/clientes']" routerLinkActive="active-link">
+                <span *ngIf="isExpanded || isShowing" style="color: white">Clientes</span>
+                <span class="example-spacer"></span>
+                <i class="material-icons" style="color: white">person_pin</i>
+            </mat-toolbar-row>
+
+            <!-- <mat-toolbar-row *ngIf="admin || ventas || compras" [routerLink]="[ '/home/reportes']" routerLinkActive="active-link">
+                <span *ngIf="isExpanded || isShowing">Reportes</span>
+                <span class="example-spacer"></span>
+                <i class="material-icons">assignment</i>
+            </mat-toolbar-row> -->
+
+            <mat-toolbar-row *ngIf="admin || ventas" [routerLink]="[ '/home/verificar-comprobante']" routerLinkActive="active-link">
+                <span *ngIf="isExpanded || isShowing" style="color: white">Verificar comprobante</span>
+                <span class="example-spacer"></span>
+                <i class="material-icons" style="color: white">domain_verification</i>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-divider></mat-divider>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
